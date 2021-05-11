@@ -33,9 +33,23 @@ build_3_4_6() {
     build_xcframework 3.4.6 --legacy_build
 }
 
+# Remove symlinks from the frameworks
+patch_4_5_2() {
+    readonly TMP_DIR="${OUTPUT_DIR}/tmp_dir"
+    find "$(pwd)/${OUTPUT_DIR}/opencv2.xcframework" -name '*.framework' -print0 | while read -d $'\0' framework; do
+        rm -rf "${TMP_DIR}"
+        mv "${framework}" "${TMP_DIR}"
+        rsync -r "${TMP_DIR}/Versions/A/" "${framework}"
+        mv "${framework}/Resources/Info.plist" "${framework}/Info.plist"
+        rm -rf "${framework}/Resources"
+        rm -rf "${TMP_DIR}"
+    done
+}
+
 build_4_5_2() {
     clone 4.5.2
     build_xcframework 4.5.2
+    patch_4_5_2
 }
 
 rm -rf "${BUILD_DIR}"
