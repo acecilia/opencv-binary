@@ -1,3 +1,4 @@
 {
-    "3.4.6": "https://github.com/acecilia/opencv-binary/releases/download/3.4.6/opencv2.xcframework.zip"
+    "3.4.6": "https://github.com/acecilia/opencv-binary/releases/download/3.4.6/opencv2.xcframework.zip",
+    "4.5.2": "https://github.com/acecilia/opencv-binary/releases/download/4.5.2/opencv2.xcframework.zip"
 }
